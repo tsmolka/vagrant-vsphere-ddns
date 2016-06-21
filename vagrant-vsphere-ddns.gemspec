@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
     s.summary = 'VMWare vSphere DDNS plugin'
     s.description = 'Enables Vagrant to connect to vSphere VMs via dynamic domain names based on MAC addresses'
     root_path      = File.dirname(__FILE__)
-    s.add_dependency 'vagrant-vsphere', '>=1.9.0'
+    s.add_dependency 'vagrant-vsphere', '~> 1.9'
 
     s.files = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
     s.executables = s.files.grep(/^bin\//) { |f| File.basename(f) }

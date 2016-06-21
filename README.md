@@ -40,7 +40,7 @@ end
 ```
 
 After running `vagrant up --provider=vsphere` Vagrant will attempt to reach VM using specified domain name
-(e.g. `005056a44d89.local`) and fail if this it can not be resolved for 2 minutes. 
+(e.g. `005056a44d89.local`) and fail if it can not be resolved for 2 minutes. 
 
 ## DHCP and DNS settings
 
@@ -57,7 +57,7 @@ zone ".local" {
 };
 ...
 ```
- * Execute custom script on DHCP events in `/etc/dhcp/dhcpd.conf`
+ * Execute [custom script](./scripts/dns_update.py) on DHCP events in `/etc/dhcp/dhcpd.conf`
 ```bash
 ...
 on commit {
