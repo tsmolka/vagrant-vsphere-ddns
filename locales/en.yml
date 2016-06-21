@@ -1,0 +1,5 @@
+en:
+  vagrant-vsphere-ddns:
+    errors:
+      ip_addr_timeout: |-
+        Could not resolve host within timeout
