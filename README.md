@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/tsmolka/vagrant-vsphere-ddns.svg?branch=master)](https://travis-ci.org/tsmolka/vagrant-vsphere-ddns) [![Gem Version](https://badge.fury.io/rb/vagrant-vsphere-ddns.svg)](http://badge.fury.io/rb/vagrant-vsphere-ddns)
+
 # Vagrant vSphere DDNS plugin
 
 This is a PoC [Vagrant](http://www.vagrantup.com) plugin that enables Vagrant to connect to vSphere VMs via dynamic domain names based on MAC addresses. 
@@ -8,8 +10,8 @@ This configuration is however not implemented in the plugin itself and has to be
 
 ## Requirements
 
-* Vagrant
-* vagrant-vsphere plugin
+* [Vagrant] (http://www.vagrantup.com)
+* [vagrant-vsphere](https://github.com/nsidc/vagrant-vsphere) plugin
 
 ## Usage
 
