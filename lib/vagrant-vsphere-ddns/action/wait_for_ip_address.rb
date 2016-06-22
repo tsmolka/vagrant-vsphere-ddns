@@ -12,6 +12,8 @@ module VagrantPlugins
                 end
 
                 def call(env)
+                    return if env[:machine_ssh_info].nil?
+                    
                     timeout = env[:machine].config.ddns.ssh_timeout                        
                     @logger.info("Trying to resolve #{env[:machine_ssh_info][:host]} (timeout #{timeout} seconds)")
                     
