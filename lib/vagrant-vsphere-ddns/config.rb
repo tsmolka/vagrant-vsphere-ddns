@@ -7,12 +7,13 @@ module VagrantPlugins
       attr_accessor :ssh_timeout
 
       def initialize
-        @host = nil
-        @ssh_timeout = nil
+        @host = UNSET_VALUE
+        @ssh_timeout = UNSET_VALUE
       end
       
       def finalize!
-        @ssh_timeout = 120 if @ssh_timeout.nil?
+        @host = nil if @host == UNSET_VALUE
+        @ssh_timeout = 120 if @ssh_timeout == UNSET_VALUE
       end
       
       def validate(machine)
