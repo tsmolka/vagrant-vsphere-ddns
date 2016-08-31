@@ -1,7 +1,7 @@
 require 'vagrant'
 
 module VagrantPlugins
-  module VSphereDNS
+  module VSphereDDNS
     module Errors
       class VSphereDDNSError < Vagrant::Errors::VagrantError
         error_namespace("vagrant-vsphere-ddns.errors")
