@@ -15,7 +15,9 @@ module VagrantPlugins
                 def call(env)
                     env[:machine_ssh_info] = get_ssh_info(env[:vSphere_connection], env[:machine])
                     if !env[:machine_ssh_info].nil?
-                        @logger.info("SSH info: %s:%s" % [env[:machine_ssh_info][:host], env[:machine_ssh_info][:port]])
+                        @logger.debug("SSH info: #{env[:machine_ssh_info]}")
+                    else
+                        @logger.debug("SSH info is nil")
                     end
                     @app.call env
                 end
@@ -23,9 +25,12 @@ module VagrantPlugins
                 private
                 
                 def get_ssh_info(connection, machine)
+                    @logger.debug("machine.config.ddns.host is nil, plugin disabled") if machine.config.ddns.host.nil?
                     return nil if machine.config.ddns.host.nil?
-                    return nil if machine.id.nil?                    
+                    @logger.warn("machine.id is nil") if machine.id.nil?
+                    return nil if machine.id.nil?
                     vm = get_vm_by_uuid connection, machine
+                    @logger.warn("get_vm_by_uuid is nil") if vm.nil?
                     return nil if vm.nil?
                     
                     format_data = {}
@@ -33,6 +38,7 @@ module VagrantPlugins
                         break if card.nil?
                         format_data["mac#{id}".to_sym] = (card.macAddress.scan /[a-f0-9]/).join
                     end
+                    @logger.debug("format_data: #{format_data}")
                     
                     {
                         host: machine.config.ddns.host % format_data,

@@ -14,8 +14,9 @@ module VagrantPlugins
                 def call(env)
                     return if env[:machine_ssh_info].nil?
                     
-                    timeout = env[:machine].config.ddns.ssh_timeout                        
-                    @logger.info("Trying to resolve #{env[:machine_ssh_info][:host]} (timeout #{timeout} seconds)")
+                    host = env[:machine_ssh_info][:host]
+                    timeout = env[:machine].config.ddns.ssh_timeout
+                    @logger.info("Trying to resolve #{host} (timeout #{timeout} seconds)")
                     
                     Timeout.timeout(timeout) do
                         while true
@@ -23,11 +24,11 @@ module VagrantPlugins
                             return if env[:interrupted]
 
                             begin
-                                ip_address = Resolv.getaddress(env[:machine_ssh_info][:host])
-                                @logger.info("Host #{env[:machine_ssh_info][:host]} resolved to #{ip_address}")
+                                ip_address = Resolv.getaddress(host)
+                                @logger.info("Host #{host} resolved to #{ip_address}")
                                 break
                             rescue Resolv::ResolvError
-                                @logger.warn("Could not resolve: #{env[:machine_ssh_info][:host]}")
+                                @logger.warn("Could not resolve: #{host}")
                             end
                             sleep 1
                         end
@@ -36,7 +37,7 @@ module VagrantPlugins
                     @app.call(env)
                     
                 rescue Timeout::Error
-                    raise Errors::IPAddrTimeout
+                    raise Errors::IPAddrTimeout, host: host, timeout: timeout
                 end
                 
             end
