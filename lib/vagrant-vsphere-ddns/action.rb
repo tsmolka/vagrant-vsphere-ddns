@@ -16,7 +16,7 @@ module VagrantPlugins
       # autoload
       action_root = Pathname.new(File.expand_path('../action', __FILE__))
       autoload :GetSshInfo, action_root.join('get_ssh_info')
-      autoload :WaitForIPAddress, action_root.join("wait_for_ip_address")
+      autoload :WaitForIPAddress, action_root.join('wait_for_ip_address')
     end
   end
 end
