@@ -19,7 +19,7 @@ Plugin can be configured by following settings:
  * `ddns.host`
    * Hostname that will be used for SSH connections instead of guest IP address
    * Patterns mac0, mac1, ... will be replaced by VMs MAC address
- * `ddns.timeout`
+ * `ddns.ssh_timeout`
    * Defines how long the plugin will wait for successfull DNS resolution (default is 120 seconds)
    
 ```ruby
@@ -27,7 +27,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = 'dummy-vsphere-box'
   
   config.ddns.host = "%{mac0}.local"
-  config.ddns.timeout = 120
+  config.ddns.ssh_timeout = 120
   
   config.vm.provider :vsphere do |vsphere|
     vsphere.host = 'HOST NAME OF YOUR VSPHERE INSTANCE'
